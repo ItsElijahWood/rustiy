@@ -102,6 +102,10 @@ fn handle_connection(mut stream: SslStream<std::net::TcpStream>) {
         if let Err(e) = serve_asset("src/assets/public-sans.ttf", "font/ttf", &mut stream) {
             eprintln!("Error serving public-sans.ttf: {}", e);
         }
+    } else if url.contains("GET /src/assets/menu_icon.png HTTP/1.1") {
+        if let Err(e) = serve_asset("src/assets/menu_icon.png", "image/png", &mut stream) {
+            eprintln!("Error serving menu_icon.png: {}", e);
+        }
     }
 }
 
