@@ -1,5 +1,5 @@
 use std::{fs, io::{Read, Write}, net::{TcpListener, TcpStream}};
- 
+
 mod pages {
     pub mod home;
 }
@@ -66,6 +66,16 @@ fn connection(mut stream: &TcpStream) {
     }
     if url.contains("GET /src/assets/public-sans.ttf HTTP/1.1") {
         let contents = fs::read("src/assets/public-sans.ttf").unwrap();
+        let response = format!(
+            "{status}\r\nContent-Type: image/png\r\nContent-Length: {}\r\n\r\n",
+            contents.len()
+        );
+
+        stream.write_all(response.as_bytes()).unwrap();
+        stream.write_all(&contents).unwrap();
+    }
+    if url.contains("GET /src/assets/menu_icon.png HTTP/1.1") {
+        let contents = fs::read("src/assets/menu_icon.png").unwrap();
         let response = format!(
             "{status}\r\nContent-Type: image/png\r\nContent-Length: {}\r\n\r\n",
             contents.len()
