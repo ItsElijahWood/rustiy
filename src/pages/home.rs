@@ -20,33 +20,33 @@ pub fn home() -> String {
           }}
 
           .format {{
-            display: flex;
-            justify-content: center;
-            padding-left: 10rem;
+            display: flex; 
+            justify-content: center; 
+            padding-left: 10rem; 
             padding-right: 10rem;
             padding-top: 3rem;
           }}
 
           .text-format {{
-            font-family: Public Sans;
-            font-size: 22px;
+            font-family: Public Sans; 
+            font-size: 22px; 
             color: white;
           }}
 
           .title {{
-            font-family: Public Sans;
-            font-size: 23px;
-            color: white;
+            font-family: Public Sans; 
+            font-size: 23px; 
+            color: white; 
             max-width: 300px;
           }}
 
           @media (max-width: 860px) {{
             .text-format {{
-              max-width: 480px;
+              max-width: none;
               font-size: 29px;
             }}
             .format {{
-              padding-left: 5rem;
+              padding-left: 5rem; 
               padding-right: 5rem;
             }}
             .title {{
@@ -57,11 +57,12 @@ pub fn home() -> String {
 
           @media (max-width: 480px) {{
             .format {{
-              padding-left: 0;
+              padding-left: 0; 
               padding-right: 0;
             }}
             .text-format {{
               max-width: 380px;
+              font-size: 22px;
             }}
           }}
 

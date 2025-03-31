@@ -8,15 +8,15 @@ pub fn header() -> String {
   return r#"
     <style>
       .header_format {
-        display: flex;
+        display: flex; 
         padding-left: 9rem;
       }
 
       .button-div {
-        display: flex;
-        position: absolute;
-        gap: 30px;
-        right: 0px;
+        display: flex; 
+        position: absolute; 
+        gap: 30px; 
+        right: 0px; 
         top: 19px;
         align-items: center;
         width: 500px;
@@ -29,12 +29,17 @@ pub fn header() -> String {
         top: 13px;
       }
 
+      .menu {
+        width: 40px;
+        height: 40px;
+      }
+
       @media (max-width: 860px) {
         .header_format {
-          padding-left: 9.5rem;
+          padding-left: 4.5rem;
         }
         .button-div {
-          display: none;
+          display: none;        
         }
         .menu-div {
           display: flex;
@@ -44,6 +49,13 @@ pub fn header() -> String {
       @media (max-width: 480px) {
         .header_format {
           padding-left: 1rem;
+        }
+        .menu {
+          width: 30px;
+          height: 30px;
+        }
+        .menu-div {
+          top: 18px;
         }
       }
     </style>
@@ -60,7 +72,7 @@ pub fn header() -> String {
           <a style="color: white; font-family: Public Sans; font-size: 18px; text-decoration: none; color: #cbcbcb;" href="/about">About</a>
         </div>
         <div class="menu-div">
-          <img src="/src/assets/menu_icon.png" width="40px" height="40px">
+          <img class="menu" src="/src/assets/menu_icon.png">
         </div>
       </div>
     </div>
