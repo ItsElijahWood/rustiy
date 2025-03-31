@@ -42,7 +42,7 @@ pub fn home() -> String {
 
           @media (max-width: 860px) {{
             .text-format {{
-              max-width: 480px;
+              max-width: none;
               font-size: 29px;
             }}
             .format {{
@@ -62,6 +62,7 @@ pub fn home() -> String {
             }}
             .text-format {{
               max-width: 380px;
+              font-size: 22px;
             }}
           }}
 
