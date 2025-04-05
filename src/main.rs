@@ -1,7 +1,7 @@
 use std::{fs, io::{Read, Write}, net::{TcpListener, TcpStream}};
-
 mod pages {
     pub mod home;
+    pub mod projects;
 }
 mod components {
     pub mod header;
@@ -42,6 +42,13 @@ fn connection(mut stream: &TcpStream) {
 
         return stream.write_all(response.as_bytes()).unwrap();
     }
+    if url.contains("GET /projects HTTP/1.1") {
+        let contents = pages::projects::projects();
+        let length = contents.len();
+        let response = format!("{status}\r\nContent-Length: {length}\r\n\r\n{contents}");
+
+        return stream.write_all(response.as_bytes()).unwrap();
+    }
 
     // Images and fonts
     if url.contains("GET /src/assets/rust_logo.png HTTP/1.1") {
@@ -67,7 +74,7 @@ fn connection(mut stream: &TcpStream) {
     if url.contains("GET /src/assets/public-sans.ttf HTTP/1.1") {
         let contents = fs::read("src/assets/public-sans.ttf").unwrap();
         let response = format!(
-            "{status}\r\nContent-Type: image/png\r\nContent-Length: {}\r\n\r\n",
+            "{status}\r\nContent-Type: font/ttf\r\nContent-Length: {}\r\n\r\n",
             contents.len()
         );
 

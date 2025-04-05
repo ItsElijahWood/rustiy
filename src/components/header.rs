@@ -34,6 +34,27 @@ pub fn header() -> String {
         height: 40px;
       }
 
+      .mobile-menu {
+        position: fixed;
+        visibility: hidden;
+        background-color: #9E5A40;
+        right: 0;
+        z-index: 999;
+        opacity: 0;
+        transform: translateX(100%);
+        transition: transform 0.5s ease, opacity 1s ease; 
+      }
+
+      .mobile-menu.active {
+        visibility: visible;
+        display: flex;
+        position: absolute !important;
+        width: 300px;
+        height: 100vh;
+        opacity: 1 !important;
+        transform: translateX(0) !important; 
+      }
+
       @media (max-width: 860px) {
         .header_format {
           padding-left: 4.5rem;
@@ -57,6 +78,9 @@ pub fn header() -> String {
         .menu-div {
           top: 18px;
         }
+        .mobile-menu.active {
+          width: 100% !important;
+        }
       }
     </style>
     <div style="display: flex; align-items: center; width: 100%; height: 65px; background-color: #9E5A40;">
@@ -71,10 +95,29 @@ pub fn header() -> String {
           <a style="color: white; font-family: Public Sans; font-size: 18px; text-decoration: none; color: #cbcbcb;" href="/projects">Projects</a>
           <a style="color: white; font-family: Public Sans; font-size: 18px; text-decoration: none; color: #cbcbcb;" href="/about">About</a>
         </div>
-        <div class="menu-div">
+        <div id="menu-div" class="menu-div">
           <img class="menu" src="/src/assets/menu_icon.png">
         </div>
       </div>
     </div>
+    <div class="mobile-menu">
+      <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 20px; width: 100%; height: 90vh;">
+        <a style="color: white; font-family: Public Sans; font-size: 23px; text-decoration: none; color: #cbcbcb;" href="/projects">Projects</a>
+        <a style="color: white; font-family: Public Sans; font-size: 23px; text-decoration: none; color: #cbcbcb;" href="/about">About</a>
+      </div>
+    </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const menuToggle = document.getElementById('menu-div');
+        if (menuToggle) {
+          menuToggle.addEventListener('click', () => {
+            const menu = document.querySelector('.mobile-menu');
+            if (menu) {
+              menu.classList.toggle('active');
+            }
+          });
+        }
+      });
+    </script>
   "#.to_string()
 }
